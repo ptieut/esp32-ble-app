@@ -35,4 +35,7 @@ enum BLEConstants {
 
     // MARK: - Firmware Server
     static let firmwareServerURL = "http://localhost:3001"
+
+    // MARK: - Proxy Server
+    static let proxyServerURL = "http://pitieu:8080"
 }

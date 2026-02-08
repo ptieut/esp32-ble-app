@@ -7,8 +7,12 @@ struct SwarmViewScreen: View {
         VStack(spacing: 0) {
             ScrollView {
                 LazyVStack(spacing: Theme.spacingMD) {
-                    ForEach(viewModel.cameraTiles) { tile in
-                        CameraTileView(tile: tile)
+                    ForEach(viewModel.proxyDevices) { device in
+                        CameraTileView(
+                            deviceId: device.id,
+                            name: device.id,
+                            isStreaming: device.streaming
+                        )
                     }
                 }
                 .padding(Theme.spacingMD)
@@ -21,12 +25,17 @@ struct SwarmViewScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button {} label: {
-                    Image(systemName: "gearshape")
+                Button {
+                    viewModel.stopMonitoring()
+                    viewModel.startMonitoring()
+                } label: {
+                    Image(systemName: "arrow.clockwise")
                         .foregroundColor(.white)
                 }
             }
         }
+        .onAppear { viewModel.startMonitoring() }
+        .onDisappear { viewModel.stopMonitoring() }
     }
 
     private var captureFooter: some View {

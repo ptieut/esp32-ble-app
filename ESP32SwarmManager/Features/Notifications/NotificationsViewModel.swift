@@ -2,7 +2,10 @@ import Foundation
 
 @MainActor
 final class NotificationsViewModel: ObservableObject {
-    @Published var notifications: [AppNotification] = PreviewData.notifications
+    @Published var notifications: [AppNotification] = []
+
+    private var alertClients: [String: SSEAlertClient] = [:]
+    private let proxyClient = ProxyAPIClient()
 
     var unreadCount: Int {
         notifications.filter(\.isUnread).count
@@ -27,6 +30,37 @@ final class NotificationsViewModel: ObservableObject {
         }
 
         return result
+    }
+
+    func startMonitoring() {
+        Task {
+            do {
+                let devices = try await proxyClient.listDevices()
+                for device in devices where device.streaming {
+                    guard alertClients[device.id] == nil else { continue }
+                    guard let url = proxyClient.alertStreamURL(deviceId: device.id) else { continue }
+
+                    let client = SSEAlertClient()
+                    let deviceId = device.id
+                    client.onAlert = { [weak self] update in
+                        Task { @MainActor [weak self] in
+                            self?.handleAlertUpdate(deviceId: deviceId, update: update)
+                        }
+                    }
+                    alertClients[device.id] = client
+                    client.connect(url: url)
+                }
+            } catch {
+                // Silently handle network errors
+            }
+        }
+    }
+
+    func stopMonitoring() {
+        for (_, client) in alertClients {
+            client.disconnect()
+        }
+        alertClients.removeAll()
     }
 
     func clearAll() {
@@ -54,5 +88,45 @@ final class NotificationsViewModel: ObservableObject {
             imageURL: notifications[index].imageURL,
             isUnread: false
         )
+    }
+
+    private func handleAlertUpdate(deviceId: String, update: ProxyAlertUpdate) {
+        let currentCategories = Set(update.alerts.map { "\(deviceId)_\($0.category)" })
+
+        // Remove stale alerts for this device
+        notifications.removeAll { notification in
+            notification.id.hasPrefix("\(deviceId)_") && !currentCategories.contains(notification.id)
+        }
+
+        // Add or update alerts
+        for alert in update.alerts {
+            let notifId = "\(deviceId)_\(alert.category)"
+            if let index = notifications.firstIndex(where: { $0.id == notifId }) {
+                // Update existing
+                notifications[index] = AppNotification(
+                    id: notifId,
+                    title: deviceId,
+                    message: alert.message,
+                    timestamp: Date(),
+                    type: .motion,
+                    imageURL: nil,
+                    isUnread: true
+                )
+            } else {
+                // Add new
+                notifications.insert(
+                    AppNotification(
+                        id: notifId,
+                        title: deviceId,
+                        message: alert.message,
+                        timestamp: Date(),
+                        type: .motion,
+                        imageURL: nil,
+                        isUnread: true
+                    ),
+                    at: 0
+                )
+            }
+        }
     }
 }

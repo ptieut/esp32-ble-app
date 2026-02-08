@@ -28,6 +28,8 @@ struct NotificationsView: View {
         .background(Theme.background)
         .navigationTitle("Notifications")
         .navigationBarTitleDisplayMode(.inline)
+        .task { viewModel.startMonitoring() }
+        .onDisappear { viewModel.stopMonitoring() }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Clear All") {

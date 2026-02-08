@@ -1,12 +1,27 @@
 import SwiftUI
 
 struct CameraTileView: View {
-    let tile: PreviewData.CameraTile
+    let deviceId: String
+    let name: String
+    let isStreaming: Bool
+
+    @StateObject private var stream = MJPEGStream()
 
     var body: some View {
         ZStack {
-            if tile.status == .connecting {
+            if !isStreaming {
                 connectingOverlay
+            } else if let frame = stream.currentFrame {
+                Image(uiImage: frame)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+
+                LinearGradient(
+                    colors: [.black.opacity(0.9), .black.opacity(0.2), .clear],
+                    startPoint: .bottom,
+                    endPoint: .top
+                )
+                .opacity(0.8)
             } else {
                 cameraFeedPlaceholder
             }
@@ -15,12 +30,21 @@ struct CameraTileView: View {
             bottomInfo
         }
         .aspectRatio(16 / 9, contentMode: .fill)
+        .clipped()
         .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMD))
         .overlay(
             RoundedRectangle(cornerRadius: Theme.cornerRadiusMD)
                 .stroke(Color.white.opacity(0.1), lineWidth: 1)
         )
         .shadow(radius: 8)
+        .task {
+            if isStreaming, let url = ProxyAPIClient().streamURL(deviceId: deviceId) {
+                stream.connect(url: url)
+            }
+        }
+        .onDisappear {
+            stream.disconnect()
+        }
     }
 
     private var connectingOverlay: some View {
@@ -47,9 +71,14 @@ struct CameraTileView: View {
         ZStack {
             Color(hex: 0x1E293B)
 
-            Image(systemName: "video")
-                .font(.system(size: 30))
-                .foregroundColor(Color.white.opacity(0.15))
+            if stream.isConnected {
+                ProgressView()
+                    .tint(.white.opacity(0.3))
+            } else {
+                Image(systemName: "video")
+                    .font(.system(size: 30))
+                    .foregroundColor(Color.white.opacity(0.15))
+            }
 
             LinearGradient(
                 colors: [.black.opacity(0.9), .black.opacity(0.2), .clear],
@@ -66,14 +95,14 @@ struct CameraTileView: View {
                 Spacer()
 
                 HStack(spacing: 8) {
-                    if tile.status == .recording {
+                    if isStreaming && stream.currentFrame != nil {
                         HStack(spacing: 6) {
                             Circle()
                                 .fill(Theme.error)
                                 .frame(width: 8, height: 8)
                                 .shadow(color: Theme.error.opacity(0.6), radius: 4)
 
-                            Text("REC")
+                            Text("LIVE")
                                 .font(.system(size: 10, weight: .medium, design: .monospaced))
                                 .foregroundColor(.white.opacity(0.9))
                                 .padding(.horizontal, 6)
@@ -89,15 +118,9 @@ struct CameraTileView: View {
                         }
                     }
 
-                    if tile.status == .active {
+                    if isStreaming {
                         Circle()
                             .fill(Theme.success)
-                            .frame(width: 10, height: 10)
-                    }
-
-                    if tile.status == .warning {
-                        Circle()
-                            .fill(Theme.warning)
                             .frame(width: 10, height: 10)
                     }
                 }
@@ -114,25 +137,25 @@ struct CameraTileView: View {
 
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(tile.name)
+                    Text(name)
                         .font(.system(size: 12, weight: .bold))
                         .tracking(0.5)
-                        .foregroundColor(tile.status == .connecting ? .white.opacity(0.7) : .white)
+                        .foregroundColor(.white)
 
-                    Text(tile.ip)
+                    Text(deviceId)
                         .font(.system(size: 10, design: .monospaced))
-                        .foregroundColor(tile.status == .connecting ? .white.opacity(0.3) : .white.opacity(0.6))
+                        .foregroundColor(.white.opacity(0.6))
                 }
 
                 Spacer()
 
-                if let fps = tile.fps {
+                if isStreaming && stream.currentFrame != nil {
                     HStack(spacing: 6) {
-                        Image(systemName: fpsIcon)
+                        Image(systemName: "video")
                             .font(.system(size: 12))
-                            .foregroundColor(fpsIconColor)
+                            .foregroundColor(Theme.success)
 
-                        Text(fps)
+                        Text("LIVE")
                             .font(.system(size: 12, weight: .medium, design: .monospaced))
                             .foregroundColor(.white)
                     }
@@ -151,24 +174,12 @@ struct CameraTileView: View {
             .padding(12)
         }
     }
-
-    private var fpsIcon: String {
-        tile.status == .warning ? "wifi.exclamationmark" : "video"
-    }
-
-    private var fpsIconColor: Color {
-        switch tile.status {
-        case .warning: return Theme.warning
-        case .active: return Theme.success
-        default: return Theme.primary
-        }
-    }
 }
 
 #Preview {
     VStack(spacing: 12) {
-        CameraTileView(tile: PreviewData.cameraTiles[0])
-        CameraTileView(tile: PreviewData.cameraTiles[2])
+        CameraTileView(deviceId: "cam-01", name: "Cam-01 Alpha", isStreaming: true)
+        CameraTileView(deviceId: "cam-02", name: "Cam-02 Bravo", isStreaming: false)
     }
     .padding()
     .background(Theme.background)
