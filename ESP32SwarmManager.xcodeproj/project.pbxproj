@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -47,6 +47,9 @@
 		E202EA5FDF5A03BA07A3A3B9 /* FirmwareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E80DF6044A3FA63B16C98 /* FirmwareViewModel.swift */; };
 		E3A7CBD50AC5C73626F0A9C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5CF816C0548CCA8A5BA6054 /* Assets.xcassets */; };
 		EB08F3B87AEC9F6CBA39EE61 /* CameraTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76D5DFD9278799ECB2E1BD8 /* CameraTileView.swift */; };
+		4D5E6F7890ABCDEF01122334 /* MJPEGStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F7890ABCDEF01 /* MJPEGStream.swift */; };
+		5E6F7890ABCDEF0112233445 /* ProxyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3C4D5E6F7890ABCDEF0112 /* ProxyAPIClient.swift */; };
+		6F7890ABCDEF011223344556 /* SSEAlertClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4D5E6F7890ABCDEF011223 /* SSEAlertClient.swift */; };
 		F02AC5E1D6A7D65A1DB295BC /* DeviceUpdateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1C8E75E3A09AF140E3F26 /* DeviceUpdateRow.swift */; };
 		F912EEF9577661CA094FE2C7 /* NotificationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A50FB96E9BCB2B32082C12 /* NotificationRow.swift */; };
 /* End PBXBuildFile section */
@@ -70,7 +73,7 @@
 		600EB7A7578D927475B32D0E /* AppNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotification.swift; sourceTree = "<group>"; };
 		6257095DCB86CFC89C872D2D /* SwarmViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwarmViewScreen.swift; sourceTree = "<group>"; };
 		69EFEB9D2B912997812361B1 /* DiscoveredDeviceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredDeviceRow.swift; sourceTree = "<group>"; };
-		75641F005B1594EE16427060 /* ESP32SwarmManager.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ESP32SwarmManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75641F005B1594EE16427060 /* ESP32SwarmManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ESP32SwarmManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7939E2783E53928314E695C0 /* WiFiConfigViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiConfigViewModel.swift; sourceTree = "<group>"; };
 		8B23FDE86002CE7AE51F0298 /* SwarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwarmViewModel.swift; sourceTree = "<group>"; };
 		98F119D21196D0175398B47F /* DeviceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStore.swift; sourceTree = "<group>"; };
@@ -86,6 +89,9 @@
 		CD2E80DF6044A3FA63B16C98 /* FirmwareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareViewModel.swift; sourceTree = "<group>"; };
 		D5CF816C0548CCA8A5BA6054 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB9ED78C1169AB915B9921FF /* FirmwareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareView.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F7890ABCDEF01 /* MJPEGStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJPEGStream.swift; sourceTree = "<group>"; };
+		2B3C4D5E6F7890ABCDEF0112 /* ProxyAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyAPIClient.swift; sourceTree = "<group>"; };
+		3C4D5E6F7890ABCDEF011223 /* SSEAlertClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSEAlertClient.swift; sourceTree = "<group>"; };
 		DF0F42E57400778A1F008B83 /* FirmwareAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareAPIClient.swift; sourceTree = "<group>"; };
 		E4B56D10D3FB368CDB20493B /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		EB0DBAC70DFDFF2CD92D52ED /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
@@ -228,6 +234,9 @@
 			children = (
 				DF0F42E57400778A1F008B83 /* FirmwareAPIClient.swift */,
 				A7C7DCE2508787C1BEEB5B08 /* FirmwareCache.swift */,
+				1A2B3C4D5E6F7890ABCDEF01 /* MJPEGStream.swift */,
+				2B3C4D5E6F7890ABCDEF0112 /* ProxyAPIClient.swift */,
+				3C4D5E6F7890ABCDEF011223 /* SSEAlertClient.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -317,7 +326,6 @@
 			);
 			mainGroup = 22FF64D9BC529BE9738F3D9C;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -363,16 +371,19 @@
 				5BD4F80B0667D4693B3C7413 /* FirmwareTargetCard.swift in Sources */,
 				1C5A4EC2575292D853583D2F /* FirmwareView.swift in Sources */,
 				E202EA5FDF5A03BA07A3A3B9 /* FirmwareViewModel.swift in Sources */,
+				4D5E6F7890ABCDEF01122334 /* MJPEGStream.swift in Sources */,
 				CB8D7E0209C0801F08B89D8D /* NetworkTrafficCard.swift in Sources */,
 				F912EEF9577661CA094FE2C7 /* NotificationRow.swift in Sources */,
 				A2A0AF1FCB916F708598A9D1 /* NotificationsView.swift in Sources */,
 				BEDDD6D9243B3C6F8209D763 /* NotificationsViewModel.swift in Sources */,
 				36D4D6E09F2DBD034FEB46B7 /* OTAProgress.swift in Sources */,
 				9837CB1F30F4F0560EA716B6 /* OTAService.swift in Sources */,
+				5E6F7890ABCDEF0112233445 /* ProxyAPIClient.swift in Sources */,
 				434560BF9817424EE415A81B /* OverallProgressView.swift in Sources */,
 				7F3C8D62D13642F4397369C5 /* PreviewData.swift in Sources */,
 				2DFE48C3F56AE7E79F405179 /* RadarAnimationView.swift in Sources */,
 				0E0AA4B4718E344F826DADAF /* ScannedDevice.swift in Sources */,
+				6F7890ABCDEF011223344556 /* SSEAlertClient.swift in Sources */,
 				B4767D4B41A31C4948517A6F /* ScannerView.swift in Sources */,
 				899587A9B6065500F1801984 /* ScannerViewModel.swift in Sources */,
 				CC0242962C918469329A3B4F /* SwarmViewModel.swift in Sources */,
@@ -515,6 +526,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ESP32SwarmManager/Preview Content\"";
+				DEVELOPMENT_TEAM = RU738PBQ2H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ESP32SwarmManager/Resources/Info.plist;
@@ -544,6 +556,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ESP32SwarmManager/Preview Content\"";
+				DEVELOPMENT_TEAM = RU738PBQ2H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ESP32SwarmManager/Resources/Info.plist;

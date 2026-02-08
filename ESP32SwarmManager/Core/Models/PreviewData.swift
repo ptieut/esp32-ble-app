@@ -154,28 +154,6 @@ enum PreviewData {
         percent: 60
     )
 
-    // MARK: - Swarm Camera Tiles
-
-    struct CameraTile: Identifiable {
-        let id: Int
-        let name: String
-        let ip: String
-        let fps: String?
-        let status: CameraStatus
-    }
-
-    enum CameraStatus {
-        case recording, active, connecting, warning
-    }
-
-    static let cameraTiles: [CameraTile] = [
-        CameraTile(id: 1, name: "Cam-01 Alpha", ip: "192.168.1.101", fps: "24 FPS", status: .recording),
-        CameraTile(id: 2, name: "Cam-02 Bravo", ip: "192.168.1.104", fps: "15 FPS", status: .active),
-        CameraTile(id: 3, name: "Cam-03 Charlie", ip: "--.--.--.--", fps: nil, status: .connecting),
-        CameraTile(id: 4, name: "Cam-04 Delta", ip: "192.168.1.108", fps: "24 FPS", status: .active),
-        CameraTile(id: 5, name: "Cam-05 Echo", ip: "192.168.1.112", fps: "8 FPS", status: .warning),
-    ]
-
     // MARK: - Firmware Update Devices
 
     struct FirmwareUpdateDevice: Identifiable {

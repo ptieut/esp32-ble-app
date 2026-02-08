@@ -5,6 +5,10 @@ final class SwarmViewModel: ObservableObject {
     @Published var proxyDevices: [ProxyDevice] = []
     @Published var isCapturing = false
 
+    var streamingDevices: [ProxyDevice] {
+        proxyDevices.filter(\.streaming)
+    }
+
     private let proxyClient = ProxyAPIClient()
     private var pollTimer: Timer?
 

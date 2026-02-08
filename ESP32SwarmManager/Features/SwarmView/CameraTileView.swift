@@ -9,9 +9,7 @@ struct CameraTileView: View {
 
     var body: some View {
         ZStack {
-            if !isStreaming {
-                connectingOverlay
-            } else if let frame = stream.currentFrame {
+            if let frame = stream.currentFrame {
                 Image(uiImage: frame)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -23,10 +21,23 @@ struct CameraTileView: View {
                 )
                 .opacity(0.8)
             } else {
-                cameraFeedPlaceholder
+                Color(hex: 0x1E293B)
+
+                if isStreaming {
+                    ProgressView()
+                        .tint(.white.opacity(0.3))
+                        .scaleEffect(1.2)
+                }
+
+                LinearGradient(
+                    colors: [.black.opacity(0.9), .black.opacity(0.2), .clear],
+                    startPoint: .bottom,
+                    endPoint: .top
+                )
+                .opacity(0.8)
             }
 
-            statusIndicators
+            statusBadge
             bottomInfo
         }
         .aspectRatio(16 / 9, contentMode: .fill)
@@ -47,83 +58,31 @@ struct CameraTileView: View {
         }
     }
 
-    private var connectingOverlay: some View {
-        ZStack {
-            LinearGradient(
-                colors: [Color(hex: 0x1E293B), Color(hex: 0x0F172A), .black],
-                startPoint: .center,
-                endPoint: .bottom
-            )
-
-            VStack(spacing: 12) {
-                ProgressView()
-                    .tint(.white.opacity(0.3))
-                    .scaleEffect(1.2)
-
-                Text("Connecting...")
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(.white.opacity(0.5))
-            }
-        }
-    }
-
-    private var cameraFeedPlaceholder: some View {
-        ZStack {
-            Color(hex: 0x1E293B)
-
-            if stream.isConnected {
-                ProgressView()
-                    .tint(.white.opacity(0.3))
-            } else {
-                Image(systemName: "video")
-                    .font(.system(size: 30))
-                    .foregroundColor(Color.white.opacity(0.15))
-            }
-
-            LinearGradient(
-                colors: [.black.opacity(0.9), .black.opacity(0.2), .clear],
-                startPoint: .bottom,
-                endPoint: .top
-            )
-            .opacity(0.8)
-        }
-    }
-
-    private var statusIndicators: some View {
+    private var statusBadge: some View {
         VStack {
             HStack {
                 Spacer()
 
-                HStack(spacing: 8) {
-                    if isStreaming && stream.currentFrame != nil {
-                        HStack(spacing: 6) {
-                            Circle()
-                                .fill(Theme.error)
-                                .frame(width: 8, height: 8)
-                                .shadow(color: Theme.error.opacity(0.6), radius: 4)
+                HStack(spacing: 6) {
+                    Circle()
+                        .fill(statusColor)
+                        .frame(width: 8, height: 8)
+                        .shadow(color: statusColor.opacity(0.6), radius: 4)
 
-                            Text("LIVE")
-                                .font(.system(size: 10, weight: .medium, design: .monospaced))
-                                .foregroundColor(.white.opacity(0.9))
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 2)
-                                .background(.black.opacity(0.4))
-                                .background(.ultraThinMaterial)
-                                .environment(\.colorScheme, .dark)
-                                .clipShape(RoundedRectangle(cornerRadius: 4))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .stroke(Color.white.opacity(0.1), lineWidth: 1)
-                                )
-                        }
-                    }
-
-                    if isStreaming {
-                        Circle()
-                            .fill(Theme.success)
-                            .frame(width: 10, height: 10)
-                    }
+                    Text(statusLabel)
+                        .font(.system(size: 10, weight: .medium, design: .monospaced))
+                        .foregroundColor(.white.opacity(0.9))
                 }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(.black.opacity(0.4))
+                .background(.ultraThinMaterial)
+                .environment(\.colorScheme, .dark)
+                .clipShape(RoundedRectangle(cornerRadius: 4))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 4)
+                        .stroke(Color.white.opacity(0.1), lineWidth: 1)
+                )
                 .padding(12)
             }
 
@@ -149,7 +108,7 @@ struct CameraTileView: View {
 
                 Spacer()
 
-                if isStreaming && stream.currentFrame != nil {
+                if stream.currentFrame != nil {
                     HStack(spacing: 6) {
                         Image(systemName: "video")
                             .font(.system(size: 12))
@@ -172,6 +131,26 @@ struct CameraTileView: View {
                 }
             }
             .padding(12)
+        }
+    }
+
+    private var statusLabel: String {
+        if stream.currentFrame != nil {
+            return "LIVE"
+        } else if isStreaming {
+            return "CONNECTING"
+        } else {
+            return "OFFLINE"
+        }
+    }
+
+    private var statusColor: Color {
+        if stream.currentFrame != nil {
+            return Theme.error
+        } else if isStreaming {
+            return .yellow
+        } else {
+            return .gray
         }
     }
 }
