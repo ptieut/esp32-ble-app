@@ -51,6 +51,7 @@ final class MJPEGStream: ObservableObject {
 private final class StreamDelegate: NSObject, URLSessionDataDelegate {
     private var buffer = Data()
     private let onFrame: @Sendable (UIImage) -> Void
+    private let frameProcessor = FrameProcessor()
 
     init(onFrame: @escaping @Sendable (UIImage) -> Void) {
         self.onFrame = onFrame
@@ -71,18 +72,34 @@ private final class StreamDelegate: NSObject, URLSessionDataDelegate {
     }
 
     private func extractFrames() {
+        let settings = readSettings()
+
         while let range = findJPEGRange() {
-            let jpegData = buffer[range]
-            if let image = UIImage(data: Data(jpegData)) {
+            let jpegData = Data(buffer[range])
+            buffer.removeSubrange(buffer.startIndex...range.upperBound)
+
+            let skipProcessing = !settings.autoExposure && abs(settings.brightness) < 0.01
+
+            if skipProcessing {
+                if let image = UIImage(data: jpegData) {
+                    onFrame(image)
+                }
+            } else if let image = frameProcessor.processFrame(
+                jpegData: jpegData,
+                brightnessOffset: settings.brightness,
+                autoExposureEnabled: settings.autoExposure
+            ) {
                 onFrame(image)
             }
-            buffer.removeSubrange(buffer.startIndex...range.upperBound)
         }
 
-        // Prevent unbounded buffer growth
         if buffer.count > 1_000_000 {
             buffer.removeAll(keepingCapacity: true)
         }
+    }
+
+    private func readSettings() -> (brightness: Float, autoExposure: Bool) {
+        StreamSettings.shared.threadSafeSettings()
     }
 
     private func findJPEGRange() -> ClosedRange<Data.Index>? {
@@ -98,7 +115,6 @@ private final class StreamDelegate: NSObject, URLSessionDataDelegate {
         }
 
         guard let start = startIdx else {
-            // Discard bytes before any potential start marker
             if buffer.count > 2 {
                 buffer.removeSubrange(buffer.startIndex..<(buffer.endIndex - 1))
             }

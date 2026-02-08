@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SwarmViewScreen: View {
     @StateObject private var viewModel = SwarmViewModel()
+    @State private var showAdjustSheet = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -36,6 +37,9 @@ struct SwarmViewScreen: View {
         }
         .onAppear { viewModel.startMonitoring() }
         .onDisappear { viewModel.stopMonitoring() }
+        .sheet(isPresented: $showAdjustSheet) {
+            AdjustSettingsSheet(settings: StreamSettings.shared)
+        }
     }
 
     private var captureFooter: some View {
@@ -71,7 +75,7 @@ struct SwarmViewScreen: View {
                     .shadow(color: Theme.primary.opacity(0.2), radius: 8)
                 }
 
-                Button {} label: {
+                Button { showAdjustSheet = true } label: {
                     Image(systemName: "slider.horizontal.3")
                         .font(.system(size: 22))
                         .foregroundColor(Color(hex: 0xCBD5E1))

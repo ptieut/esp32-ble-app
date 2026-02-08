@@ -52,6 +52,10 @@
 		6F7890ABCDEF011223344556 /* SSEAlertClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4D5E6F7890ABCDEF011223 /* SSEAlertClient.swift */; };
 		F02AC5E1D6A7D65A1DB295BC /* DeviceUpdateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1C8E75E3A09AF140E3F26 /* DeviceUpdateRow.swift */; };
 		F912EEF9577661CA094FE2C7 /* NotificationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A50FB96E9BCB2B32082C12 /* NotificationRow.swift */; };
+		EE5F6A7B8C9D0E1F2A3B4C5D /* AutoExposureConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1B2C3D4E5F6A7B8C9D0E1F /* AutoExposureConstants.swift */; };
+		FF6A7B8C9D0E1F2A3B4C5D6E /* FrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2C3D4E5F6A7B8C9D0E1F2A /* FrameProcessor.swift */; };
+		1122334455667788AABBCCDD /* StreamSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3D4E5F6A7B8C9D0E1F2A3B /* StreamSettings.swift */; };
+		2233445566778899AABBCCEE /* AdjustSettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4E5F6A7B8C9D0E1F2A3B4C /* AdjustSettingsSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +106,10 @@
 		F77958A7F94B5262728CABD9 /* WiFiConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiConfigView.swift; sourceTree = "<group>"; };
 		F8EEE6D03C9690BF7304BC2B /* OverallProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallProgressView.swift; sourceTree = "<group>"; };
 		FC0CCCB16436DEDD201FD248 /* OTAProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTAProgress.swift; sourceTree = "<group>"; };
+		AA1B2C3D4E5F6A7B8C9D0E1F /* AutoExposureConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoExposureConstants.swift; sourceTree = "<group>"; };
+		BB2C3D4E5F6A7B8C9D0E1F2A /* FrameProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameProcessor.swift; sourceTree = "<group>"; };
+		CC3D4E5F6A7B8C9D0E1F2A3B /* StreamSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamSettings.swift; sourceTree = "<group>"; };
+		DD4E5F6A7B8C9D0E1F2A3B4C /* AdjustSettingsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustSettingsSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -110,6 +118,7 @@
 			children = (
 				23ADB643BF94790AF8DC5130 /* BLE */,
 				896D127A203BF59A53DFE0D0 /* Design */,
+				44556677889900AABBCCDDEE /* ImageProcessing */,
 				A15ECC7BCB79F8268249E336 /* Models */,
 				98851937F88CFAE24829A80B /* Network */,
 			);
@@ -170,10 +179,21 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
+		44556677889900AABBCCDDEE /* ImageProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				AA1B2C3D4E5F6A7B8C9D0E1F /* AutoExposureConstants.swift */,
+				BB2C3D4E5F6A7B8C9D0E1F2A /* FrameProcessor.swift */,
+			);
+			path = ImageProcessing;
+			sourceTree = "<group>";
+		};
 		478FB4462EE3F5C9E06E3240 /* SwarmView */ = {
 			isa = PBXGroup;
 			children = (
+				DD4E5F6A7B8C9D0E1F2A3B4C /* AdjustSettingsSheet.swift */,
 				B76D5DFD9278799ECB2E1BD8 /* CameraTileView.swift */,
+				CC3D4E5F6A7B8C9D0E1F2A3B /* StreamSettings.swift */,
 				8B23FDE86002CE7AE51F0298 /* SwarmViewModel.swift */,
 				6257095DCB86CFC89C872D2D /* SwarmViewScreen.swift */,
 			);
@@ -351,6 +371,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0FE7D2035A13547611AA16F /* ActionBarView.swift in Sources */,
+				2233445566778899AABBCCEE /* AdjustSettingsSheet.swift in Sources */,
+				EE5F6A7B8C9D0E1F2A3B4C5D /* AutoExposureConstants.swift in Sources */,
+				FF6A7B8C9D0E1F2A3B4C5D6E /* FrameProcessor.swift in Sources */,
+				1122334455667788AABBCCDD /* StreamSettings.swift in Sources */,
 				D703FC6A237B582298240127 /* AppNotification.swift in Sources */,
 				43203B44C0C231E5EEC4FA0C /* BLEConstants.swift in Sources */,
 				ACD9E777DDE8B0F6C8861A89 /* BLEManager.swift in Sources */,

@@ -6,6 +6,7 @@ struct CameraTileView: View {
     let isStreaming: Bool
 
     @StateObject private var stream = MJPEGStream()
+    @ObservedObject private var settings = StreamSettings.shared
 
     var body: some View {
         ZStack {
@@ -49,12 +50,25 @@ struct CameraTileView: View {
         )
         .shadow(radius: 8)
         .task {
-            if isStreaming, let url = ProxyAPIClient().streamURL(deviceId: deviceId) {
-                stream.connect(url: url)
-            }
+            connectIfNeeded()
         }
         .onDisappear {
             stream.disconnect()
+        }
+        .onChange(of: settings.skeletonOverlayEnabled) { _ in
+            stream.disconnect()
+            connectIfNeeded()
+        }
+    }
+
+    private func connectIfNeeded() {
+        guard isStreaming else { return }
+        let url = ProxyAPIClient().streamURL(
+            deviceId: deviceId,
+            withPose: settings.skeletonOverlayEnabled
+        )
+        if let url {
+            stream.connect(url: url)
         }
     }
 
@@ -146,7 +160,7 @@ struct CameraTileView: View {
 
     private var statusColor: Color {
         if stream.currentFrame != nil {
-            return Theme.error
+            return Theme.success
         } else if isStreaming {
             return .yellow
         } else {
