@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>ESP32 Swarm Manager needs Bluetooth to discover and configure ESP32-CAM devices.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>ESP32 Swarm Manager communicates with ESP32-CAM devices over Bluetooth Low Energy.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>ESP32 Swarm Manager accesses the local network for firmware downloads and camera streams.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

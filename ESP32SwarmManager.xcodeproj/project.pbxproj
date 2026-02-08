@@ -1,0 +1,592 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C5A955E30986BA01BD5F8A2 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D18AED808E92B567ECF70B /* DashboardView.swift */; };
+		0E0AA4B4718E344F826DADAF /* ScannedDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB53E3C9C43D14694D61F /* ScannedDevice.swift */; };
+		1C5A4EC2575292D853583D2F /* FirmwareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9ED78C1169AB915B9921FF /* FirmwareView.swift */; };
+		249928C275618142883B18E3 /* WiFiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1879E08EABADB0C15B9331A5 /* WiFiService.swift */; };
+		2DFE48C3F56AE7E79F405179 /* RadarAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E205A2AC7D6E56F0FA03C73 /* RadarAnimationView.swift */; };
+		315B43F893F4BA04E98FC3BA /* FirmwareAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0F42E57400778A1F008B83 /* FirmwareAPIClient.swift */; };
+		36D4D6E09F2DBD034FEB46B7 /* OTAProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CCCB16436DEDD201FD248 /* OTAProgress.swift */; };
+		43203B44C0C231E5EEC4FA0C /* BLEConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BF83181444435262696E0D /* BLEConstants.swift */; };
+		434560BF9817424EE415A81B /* OverallProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EEE6D03C9690BF7304BC2B /* OverallProgressView.swift */; };
+		446EB094D10B152C4A213FC2 /* DeviceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346F867AAD000E2C702FE9C /* DeviceCardView.swift */; };
+		4F30D15465F4F74C6C47799A /* DeviceWiFiStatusRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCABDEE57FAE477A9AA2910 /* DeviceWiFiStatusRow.swift */; };
+		568087434CA09B189F52AA20 /* SwarmViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6257095DCB86CFC89C872D2D /* SwarmViewScreen.swift */; };
+		59A882C413DC98B72787382C /* FirmwareCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C7DCE2508787C1BEEB5B08 /* FirmwareCache.swift */; };
+		5BD4F80B0667D4693B3C7413 /* FirmwareTargetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B3F8304F1A18CD9BD39342 /* FirmwareTargetCard.swift */; };
+		60329338B1110A24E760BB17 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CE1C1ADE8E093FDEE0CDDE /* DashboardViewModel.swift */; };
+		62B664E3ED2C9387CD2EEFB4 /* WiFiConfigViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7939E2783E53928314E695C0 /* WiFiConfigViewModel.swift */; };
+		6E7EC491BDDE0DE5A743B6A7 /* FirmwareEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C663083A9B849BBEB5986ABD /* FirmwareEntry.swift */; };
+		7CDAB64E98B842D0FB0B7AD4 /* ESP32SwarmManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FEC7ABFB02A69C44698877 /* ESP32SwarmManagerApp.swift */; };
+		7F3C8D62D13642F4397369C5 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3249BF6AF9AE5609648FE61D /* PreviewData.swift */; };
+		899587A9B6065500F1801984 /* ScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17E8F3EA1153BBDA654E5E2 /* ScannerViewModel.swift */; };
+		9837CB1F30F4F0560EA716B6 /* OTAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020C6B7AA78F794CDBE5192C /* OTAService.swift */; };
+		A2A0AF1FCB916F708598A9D1 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0DBAC70DFDFF2CD92D52ED /* NotificationsView.swift */; };
+		A5A96175BC4BC4B9C4AA9A5F /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287FF38B507AF147321D1A1 /* ViewModifiers.swift */; };
+		A7A805F30E7A8CE1B9363AC1 /* WiFiStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21891314564E4E18A8E104D0 /* WiFiStatus.swift */; };
+		A8679C58A0CD79CEFC7A7754 /* ConnectedDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F851AE551FE61BA7A0EC1F3 /* ConnectedDevice.swift */; };
+		ACD9E777DDE8B0F6C8861A89 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A3BDCDB178E9B1D40F053D /* BLEManager.swift */; };
+		B04E6671D8E8BFCB5E976C22 /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F119D21196D0175398B47F /* DeviceStore.swift */; };
+		B0FE7D2035A13547611AA16F /* ActionBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DA86062F117DDE318DC39 /* ActionBarView.swift */; };
+		B162D3A03836CBEE917CB26D /* DiscoveredDeviceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EFEB9D2B912997812361B1 /* DiscoveredDeviceRow.swift */; };
+		B4767D4B41A31C4948517A6F /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507731F11860ED2F42EDF468 /* ScannerView.swift */; };
+		BEDDD6D9243B3C6F8209D763 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B56D10D3FB368CDB20493B /* NotificationsViewModel.swift */; };
+		C1B95B8C3718670D5FB7ABC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD013E40F5DA152699581F /* ContentView.swift */; };
+		CB8D7E0209C0801F08B89D8D /* NetworkTrafficCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8778859F3E804B4B32A2C0 /* NetworkTrafficCard.swift */; };
+		CC0242962C918469329A3B4F /* SwarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B23FDE86002CE7AE51F0298 /* SwarmViewModel.swift */; };
+		D703FC6A237B582298240127 /* AppNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600EB7A7578D927475B32D0E /* AppNotification.swift */; };
+		D8EA37AFAAACA84CDEF30589 /* WiFiConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77958A7F94B5262728CABD9 /* WiFiConfigView.swift */; };
+		DAED7903C1892A35A3DF8728 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05190E24DEA51E6B572E9893 /* Theme.swift */; };
+		E202EA5FDF5A03BA07A3A3B9 /* FirmwareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E80DF6044A3FA63B16C98 /* FirmwareViewModel.swift */; };
+		E3A7CBD50AC5C73626F0A9C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5CF816C0548CCA8A5BA6054 /* Assets.xcassets */; };
+		EB08F3B87AEC9F6CBA39EE61 /* CameraTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76D5DFD9278799ECB2E1BD8 /* CameraTileView.swift */; };
+		F02AC5E1D6A7D65A1DB295BC /* DeviceUpdateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1C8E75E3A09AF140E3F26 /* DeviceUpdateRow.swift */; };
+		F912EEF9577661CA094FE2C7 /* NotificationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A50FB96E9BCB2B32082C12 /* NotificationRow.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		020C6B7AA78F794CDBE5192C /* OTAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTAService.swift; sourceTree = "<group>"; };
+		0346F867AAD000E2C702FE9C /* DeviceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCardView.swift; sourceTree = "<group>"; };
+		05190E24DEA51E6B572E9893 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		0E205A2AC7D6E56F0FA03C73 /* RadarAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarAnimationView.swift; sourceTree = "<group>"; };
+		0F851AE551FE61BA7A0EC1F3 /* ConnectedDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedDevice.swift; sourceTree = "<group>"; };
+		1879E08EABADB0C15B9331A5 /* WiFiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiService.swift; sourceTree = "<group>"; };
+		20BCB53E3C9C43D14694D61F /* ScannedDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedDevice.swift; sourceTree = "<group>"; };
+		21891314564E4E18A8E104D0 /* WiFiStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiStatus.swift; sourceTree = "<group>"; };
+		27BF83181444435262696E0D /* BLEConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEConstants.swift; sourceTree = "<group>"; };
+		3249BF6AF9AE5609648FE61D /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
+		3287FF38B507AF147321D1A1 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		507731F11860ED2F42EDF468 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		50CE1C1ADE8E093FDEE0CDDE /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		54A3BDCDB178E9B1D40F053D /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
+		5DCABDEE57FAE477A9AA2910 /* DeviceWiFiStatusRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceWiFiStatusRow.swift; sourceTree = "<group>"; };
+		600EB7A7578D927475B32D0E /* AppNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotification.swift; sourceTree = "<group>"; };
+		6257095DCB86CFC89C872D2D /* SwarmViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwarmViewScreen.swift; sourceTree = "<group>"; };
+		69EFEB9D2B912997812361B1 /* DiscoveredDeviceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredDeviceRow.swift; sourceTree = "<group>"; };
+		75641F005B1594EE16427060 /* ESP32SwarmManager.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ESP32SwarmManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7939E2783E53928314E695C0 /* WiFiConfigViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiConfigViewModel.swift; sourceTree = "<group>"; };
+		8B23FDE86002CE7AE51F0298 /* SwarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwarmViewModel.swift; sourceTree = "<group>"; };
+		98F119D21196D0175398B47F /* DeviceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStore.swift; sourceTree = "<group>"; };
+		A065377D2B31BE10E3265585 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A3AD013E40F5DA152699581F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A7C7DCE2508787C1BEEB5B08 /* FirmwareCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareCache.swift; sourceTree = "<group>"; };
+		B76D5DFD9278799ECB2E1BD8 /* CameraTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTileView.swift; sourceTree = "<group>"; };
+		BF7DA86062F117DDE318DC39 /* ActionBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionBarView.swift; sourceTree = "<group>"; };
+		BFF1C8E75E3A09AF140E3F26 /* DeviceUpdateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUpdateRow.swift; sourceTree = "<group>"; };
+		C17E8F3EA1153BBDA654E5E2 /* ScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewModel.swift; sourceTree = "<group>"; };
+		C663083A9B849BBEB5986ABD /* FirmwareEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareEntry.swift; sourceTree = "<group>"; };
+		C8D18AED808E92B567ECF70B /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		CD2E80DF6044A3FA63B16C98 /* FirmwareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareViewModel.swift; sourceTree = "<group>"; };
+		D5CF816C0548CCA8A5BA6054 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DB9ED78C1169AB915B9921FF /* FirmwareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareView.swift; sourceTree = "<group>"; };
+		DF0F42E57400778A1F008B83 /* FirmwareAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareAPIClient.swift; sourceTree = "<group>"; };
+		E4B56D10D3FB368CDB20493B /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		EB0DBAC70DFDFF2CD92D52ED /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		EB8778859F3E804B4B32A2C0 /* NetworkTrafficCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTrafficCard.swift; sourceTree = "<group>"; };
+		F0FEC7ABFB02A69C44698877 /* ESP32SwarmManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESP32SwarmManagerApp.swift; sourceTree = "<group>"; };
+		F2A50FB96E9BCB2B32082C12 /* NotificationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRow.swift; sourceTree = "<group>"; };
+		F3B3F8304F1A18CD9BD39342 /* FirmwareTargetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareTargetCard.swift; sourceTree = "<group>"; };
+		F77958A7F94B5262728CABD9 /* WiFiConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiConfigView.swift; sourceTree = "<group>"; };
+		F8EEE6D03C9690BF7304BC2B /* OverallProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallProgressView.swift; sourceTree = "<group>"; };
+		FC0CCCB16436DEDD201FD248 /* OTAProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTAProgress.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		15406652F270702840D9E486 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				23ADB643BF94790AF8DC5130 /* BLE */,
+				896D127A203BF59A53DFE0D0 /* Design */,
+				A15ECC7BCB79F8268249E336 /* Models */,
+				98851937F88CFAE24829A80B /* Network */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1F44CE7E93B85932812F3449 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				BF7DA86062F117DDE318DC39 /* ActionBarView.swift */,
+				C8D18AED808E92B567ECF70B /* DashboardView.swift */,
+				50CE1C1ADE8E093FDEE0CDDE /* DashboardViewModel.swift */,
+				0346F867AAD000E2C702FE9C /* DeviceCardView.swift */,
+				EB8778859F3E804B4B32A2C0 /* NetworkTrafficCard.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		22FF64D9BC529BE9738F3D9C = {
+			isa = PBXGroup;
+			children = (
+				83B532025B395BB1BD46CAB2 /* ESP32SwarmManager */,
+				684522EC7881830A7D13F8C7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		23ADB643BF94790AF8DC5130 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				27BF83181444435262696E0D /* BLEConstants.swift */,
+				54A3BDCDB178E9B1D40F053D /* BLEManager.swift */,
+				98F119D21196D0175398B47F /* DeviceStore.swift */,
+				020C6B7AA78F794CDBE5192C /* OTAService.swift */,
+				1879E08EABADB0C15B9331A5 /* WiFiService.swift */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
+		292D6D69CF8F5799D7B91F2F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D5CF816C0548CCA8A5BA6054 /* Assets.xcassets */,
+				A065377D2B31BE10E3265585 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		415628F0687C05D1FBEF5245 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				1F44CE7E93B85932812F3449 /* Dashboard */,
+				B4D040C782B685108908B7C6 /* Firmware */,
+				DE75BC1AE2F524A6702FBBFB /* Notifications */,
+				4CB19953A9BF219D5ED0A42C /* Scanner */,
+				478FB4462EE3F5C9E06E3240 /* SwarmView */,
+				64408525EE939E86555BB26C /* WiFiConfig */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		478FB4462EE3F5C9E06E3240 /* SwarmView */ = {
+			isa = PBXGroup;
+			children = (
+				B76D5DFD9278799ECB2E1BD8 /* CameraTileView.swift */,
+				8B23FDE86002CE7AE51F0298 /* SwarmViewModel.swift */,
+				6257095DCB86CFC89C872D2D /* SwarmViewScreen.swift */,
+			);
+			path = SwarmView;
+			sourceTree = "<group>";
+		};
+		4CB19953A9BF219D5ED0A42C /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				69EFEB9D2B912997812361B1 /* DiscoveredDeviceRow.swift */,
+				0E205A2AC7D6E56F0FA03C73 /* RadarAnimationView.swift */,
+				507731F11860ED2F42EDF468 /* ScannerView.swift */,
+				C17E8F3EA1153BBDA654E5E2 /* ScannerViewModel.swift */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
+		64408525EE939E86555BB26C /* WiFiConfig */ = {
+			isa = PBXGroup;
+			children = (
+				5DCABDEE57FAE477A9AA2910 /* DeviceWiFiStatusRow.swift */,
+				F77958A7F94B5262728CABD9 /* WiFiConfigView.swift */,
+				7939E2783E53928314E695C0 /* WiFiConfigViewModel.swift */,
+			);
+			path = WiFiConfig;
+			sourceTree = "<group>";
+		};
+		684522EC7881830A7D13F8C7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				75641F005B1594EE16427060 /* ESP32SwarmManager.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		83B532025B395BB1BD46CAB2 /* ESP32SwarmManager */ = {
+			isa = PBXGroup;
+			children = (
+				DF79489C683BEFFA8FDBB58C /* App */,
+				15406652F270702840D9E486 /* Core */,
+				415628F0687C05D1FBEF5245 /* Features */,
+				292D6D69CF8F5799D7B91F2F /* Resources */,
+			);
+			path = ESP32SwarmManager;
+			sourceTree = "<group>";
+		};
+		896D127A203BF59A53DFE0D0 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				05190E24DEA51E6B572E9893 /* Theme.swift */,
+				3287FF38B507AF147321D1A1 /* ViewModifiers.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		98851937F88CFAE24829A80B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DF0F42E57400778A1F008B83 /* FirmwareAPIClient.swift */,
+				A7C7DCE2508787C1BEEB5B08 /* FirmwareCache.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		A15ECC7BCB79F8268249E336 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				600EB7A7578D927475B32D0E /* AppNotification.swift */,
+				0F851AE551FE61BA7A0EC1F3 /* ConnectedDevice.swift */,
+				C663083A9B849BBEB5986ABD /* FirmwareEntry.swift */,
+				FC0CCCB16436DEDD201FD248 /* OTAProgress.swift */,
+				3249BF6AF9AE5609648FE61D /* PreviewData.swift */,
+				20BCB53E3C9C43D14694D61F /* ScannedDevice.swift */,
+				21891314564E4E18A8E104D0 /* WiFiStatus.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B4D040C782B685108908B7C6 /* Firmware */ = {
+			isa = PBXGroup;
+			children = (
+				BFF1C8E75E3A09AF140E3F26 /* DeviceUpdateRow.swift */,
+				F3B3F8304F1A18CD9BD39342 /* FirmwareTargetCard.swift */,
+				DB9ED78C1169AB915B9921FF /* FirmwareView.swift */,
+				CD2E80DF6044A3FA63B16C98 /* FirmwareViewModel.swift */,
+				F8EEE6D03C9690BF7304BC2B /* OverallProgressView.swift */,
+			);
+			path = Firmware;
+			sourceTree = "<group>";
+		};
+		DE75BC1AE2F524A6702FBBFB /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				F2A50FB96E9BCB2B32082C12 /* NotificationRow.swift */,
+				EB0DBAC70DFDFF2CD92D52ED /* NotificationsView.swift */,
+				E4B56D10D3FB368CDB20493B /* NotificationsViewModel.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		DF79489C683BEFFA8FDBB58C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A3AD013E40F5DA152699581F /* ContentView.swift */,
+				F0FEC7ABFB02A69C44698877 /* ESP32SwarmManagerApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EF389C790291DA52B206BE9D /* ESP32SwarmManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB198CDD67EB1CE10E070221 /* Build configuration list for PBXNativeTarget "ESP32SwarmManager" */;
+			buildPhases = (
+				2AC3A5D4012983EE3C91FE2F /* Sources */,
+				BB96E2A29076E885457473ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ESP32SwarmManager;
+			packageProductDependencies = (
+			);
+			productName = ESP32SwarmManager;
+			productReference = 75641F005B1594EE16427060 /* ESP32SwarmManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2D45350F64B1AE7A14ACCAF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1520;
+			};
+			buildConfigurationList = 4863B0A8A924546ABE554F49 /* Build configuration list for PBXProject "ESP32SwarmManager" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 22FF64D9BC529BE9738F3D9C;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF389C790291DA52B206BE9D /* ESP32SwarmManager */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB96E2A29076E885457473ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3A7CBD50AC5C73626F0A9C5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2AC3A5D4012983EE3C91FE2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0FE7D2035A13547611AA16F /* ActionBarView.swift in Sources */,
+				D703FC6A237B582298240127 /* AppNotification.swift in Sources */,
+				43203B44C0C231E5EEC4FA0C /* BLEConstants.swift in Sources */,
+				ACD9E777DDE8B0F6C8861A89 /* BLEManager.swift in Sources */,
+				EB08F3B87AEC9F6CBA39EE61 /* CameraTileView.swift in Sources */,
+				A8679C58A0CD79CEFC7A7754 /* ConnectedDevice.swift in Sources */,
+				C1B95B8C3718670D5FB7ABC1 /* ContentView.swift in Sources */,
+				0C5A955E30986BA01BD5F8A2 /* DashboardView.swift in Sources */,
+				60329338B1110A24E760BB17 /* DashboardViewModel.swift in Sources */,
+				446EB094D10B152C4A213FC2 /* DeviceCardView.swift in Sources */,
+				B04E6671D8E8BFCB5E976C22 /* DeviceStore.swift in Sources */,
+				F02AC5E1D6A7D65A1DB295BC /* DeviceUpdateRow.swift in Sources */,
+				4F30D15465F4F74C6C47799A /* DeviceWiFiStatusRow.swift in Sources */,
+				B162D3A03836CBEE917CB26D /* DiscoveredDeviceRow.swift in Sources */,
+				7CDAB64E98B842D0FB0B7AD4 /* ESP32SwarmManagerApp.swift in Sources */,
+				315B43F893F4BA04E98FC3BA /* FirmwareAPIClient.swift in Sources */,
+				59A882C413DC98B72787382C /* FirmwareCache.swift in Sources */,
+				6E7EC491BDDE0DE5A743B6A7 /* FirmwareEntry.swift in Sources */,
+				5BD4F80B0667D4693B3C7413 /* FirmwareTargetCard.swift in Sources */,
+				1C5A4EC2575292D853583D2F /* FirmwareView.swift in Sources */,
+				E202EA5FDF5A03BA07A3A3B9 /* FirmwareViewModel.swift in Sources */,
+				CB8D7E0209C0801F08B89D8D /* NetworkTrafficCard.swift in Sources */,
+				F912EEF9577661CA094FE2C7 /* NotificationRow.swift in Sources */,
+				A2A0AF1FCB916F708598A9D1 /* NotificationsView.swift in Sources */,
+				BEDDD6D9243B3C6F8209D763 /* NotificationsViewModel.swift in Sources */,
+				36D4D6E09F2DBD034FEB46B7 /* OTAProgress.swift in Sources */,
+				9837CB1F30F4F0560EA716B6 /* OTAService.swift in Sources */,
+				434560BF9817424EE415A81B /* OverallProgressView.swift in Sources */,
+				7F3C8D62D13642F4397369C5 /* PreviewData.swift in Sources */,
+				2DFE48C3F56AE7E79F405179 /* RadarAnimationView.swift in Sources */,
+				0E0AA4B4718E344F826DADAF /* ScannedDevice.swift in Sources */,
+				B4767D4B41A31C4948517A6F /* ScannerView.swift in Sources */,
+				899587A9B6065500F1801984 /* ScannerViewModel.swift in Sources */,
+				CC0242962C918469329A3B4F /* SwarmViewModel.swift in Sources */,
+				568087434CA09B189F52AA20 /* SwarmViewScreen.swift in Sources */,
+				DAED7903C1892A35A3DF8728 /* Theme.swift in Sources */,
+				A5A96175BC4BC4B9C4AA9A5F /* ViewModifiers.swift in Sources */,
+				D8EA37AFAAACA84CDEF30589 /* WiFiConfigView.swift in Sources */,
+				62B664E3ED2C9387CD2EEFB4 /* WiFiConfigViewModel.swift in Sources */,
+				249928C275618142883B18E3 /* WiFiService.swift in Sources */,
+				A7A805F30E7A8CE1B9363AC1 /* WiFiStatus.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		126189ACF97D8C4C2A632CD0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		13435E06A71A2CBD0D2D8DA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		74538A8D6F9AF6BC457D53E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ESP32SwarmManager/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ESP32SwarmManager/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "ESP32 Swarm";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esp32swarm.manager;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BCE655D614F8C86B8835D0E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ESP32SwarmManager/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ESP32SwarmManager/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "ESP32 Swarm";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esp32swarm.manager;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4863B0A8A924546ABE554F49 /* Build configuration list for PBXProject "ESP32SwarmManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				126189ACF97D8C4C2A632CD0 /* Debug */,
+				13435E06A71A2CBD0D2D8DA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CB198CDD67EB1CE10E070221 /* Build configuration list for PBXNativeTarget "ESP32SwarmManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74538A8D6F9AF6BC457D53E3 /* Debug */,
+				BCE655D614F8C86B8835D0E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F2D45350F64B1AE7A14ACCAF /* Project object */;
+}
