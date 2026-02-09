@@ -8,6 +8,8 @@
 	<string>ESP32 Swarm Manager communicates with ESP32-CAM devices over Bluetooth Low Energy.</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>ESP32 Swarm Manager accesses the local network for firmware downloads and camera streams.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>ESP32 Swarm Manager saves recorded videos to your photo library.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsLocalNetworking</key>

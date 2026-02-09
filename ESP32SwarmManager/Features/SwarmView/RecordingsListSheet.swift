@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct RecordingsListSheet: View {
     let devices: [ProxyDevice]
@@ -60,6 +61,9 @@ struct RecordingsListSheet: View {
 
 private struct RecordingRow: View {
     let recording: RecordingEntry
+    @State private var isDownloading = false
+    @State private var shareFileURL: URL?
+    @State private var showShareSheet = false
 
     var body: some View {
         HStack(spacing: Theme.spacingMD) {
@@ -90,18 +94,55 @@ private struct RecordingRow: View {
                     .font(.system(size: 12, design: .monospaced))
                     .foregroundColor(Theme.textSecondary)
 
-                if let url = ProxyAPIClient().recordingDownloadURL(
-                    recordingId: recording.recording_id
-                ) {
-                    ShareLink(item: url) {
+                Button {
+                    Task { await downloadAndShare() }
+                } label: {
+                    if isDownloading {
+                        ProgressView()
+                            .controlSize(.small)
+                            .tint(Theme.primary)
+                    } else {
                         Image(systemName: "square.and.arrow.down")
                             .font(.system(size: 16))
                             .foregroundColor(Theme.primary)
                     }
                 }
+                .disabled(isDownloading)
             }
         }
         .padding(Theme.spacingLG)
         .surfaceStyle()
+        .sheet(isPresented: $showShareSheet) {
+            if let fileURL = shareFileURL {
+                ActivityView(activityItems: [fileURL])
+                    .presentationDetents([.medium, .large])
+            }
+        }
     }
+
+    private func downloadAndShare() async {
+        isDownloading = true
+        defer { isDownloading = false }
+
+        do {
+            let localURL = try await ProxyAPIClient().downloadRecording(
+                recordingId: recording.recording_id
+            )
+            shareFileURL = localURL
+            showShareSheet = true
+        } catch {
+            print("Download failed: \(error)")
+        }
+    }
+}
+
+/// Wraps UIActivityViewController for use in SwiftUI.
+struct ActivityView: UIViewControllerRepresentable {
+    let activityItems: [Any]
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }

@@ -162,6 +162,24 @@ struct ProxyAPIClient {
     func recordingDownloadURL(recordingId: String) -> URL? {
         URL(string: "\(baseURL)/record/download/\(recordingId)")
     }
+
+    func downloadRecording(recordingId: String) async throws -> URL {
+        guard let url = recordingDownloadURL(recordingId: recordingId) else {
+            throw ProxyError.invalidURL
+        }
+
+        let (tempURL, response) = try await URLSession.shared.download(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw ProxyError.requestFailed
+        }
+
+        let destURL = FileManager.default.temporaryDirectory
+            .appendingPathComponent("\(recordingId).mp4")
+        try? FileManager.default.removeItem(at: destURL)
+        try FileManager.default.moveItem(at: tempURL, to: destURL)
+        return destURL
+    }
 }
 
 // MARK: - Models
