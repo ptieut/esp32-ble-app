@@ -62,6 +62,106 @@ struct ProxyAPIClient {
     func alertStreamURL(deviceId: String) -> URL? {
         URL(string: "\(baseURL)/pose-alerts-stream/\(deviceId)")
     }
+
+    // MARK: - Buffer (Rewind) Endpoints
+
+    func getBufferMetadata(deviceId: String) async throws -> BufferMetadata {
+        guard let url = URL(string: "\(baseURL)/buffer/\(deviceId)") else {
+            throw ProxyError.invalidURL
+        }
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw ProxyError.requestFailed
+        }
+
+        return try JSONDecoder().decode(BufferMetadata.self, from: data)
+    }
+
+    func getBufferFrames(deviceId: String) async throws -> [BufferFrameInfo] {
+        guard let url = URL(string: "\(baseURL)/buffer/\(deviceId)/frames") else {
+            throw ProxyError.invalidURL
+        }
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw ProxyError.requestFailed
+        }
+
+        return try JSONDecoder().decode([BufferFrameInfo].self, from: data)
+    }
+
+    func getBufferFrame(deviceId: String, timestampMs: UInt64) async throws -> (imageData: Data, timestamp: UInt64) {
+        guard let url = URL(string: "\(baseURL)/buffer/\(deviceId)/frame?t=\(timestampMs)") else {
+            throw ProxyError.invalidURL
+        }
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw ProxyError.requestFailed
+        }
+
+        let ts = httpResponse.value(forHTTPHeaderField: "X-Frame-Timestamp")
+            .flatMap { UInt64($0) } ?? timestampMs
+        return (data, ts)
+    }
+
+    // MARK: - Recording Endpoints
+
+    func startRecording(deviceId: String) async throws -> RecordingStartResponse {
+        guard let url = URL(string: "\(baseURL)/record/start/\(deviceId)") else {
+            throw ProxyError.invalidURL
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw ProxyError.requestFailed
+        }
+
+        return try JSONDecoder().decode(RecordingStartResponse.self, from: data)
+    }
+
+    func stopRecording(recordingId: String) async throws -> RecordingStopResponse {
+        guard let url = URL(string: "\(baseURL)/record/stop/\(recordingId)") else {
+            throw ProxyError.invalidURL
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw ProxyError.requestFailed
+        }
+
+        return try JSONDecoder().decode(RecordingStopResponse.self, from: data)
+    }
+
+    func listRecordings(deviceId: String) async throws -> [RecordingEntry] {
+        guard let url = URL(string: "\(baseURL)/record/list/\(deviceId)") else {
+            throw ProxyError.invalidURL
+        }
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw ProxyError.requestFailed
+        }
+
+        return try JSONDecoder().decode([RecordingEntry].self, from: data)
+    }
+
+    func recordingDownloadURL(recordingId: String) -> URL? {
+        URL(string: "\(baseURL)/record/download/\(recordingId)")
+    }
 }
 
 // MARK: - Models

@@ -56,6 +56,12 @@
 		FF6A7B8C9D0E1F2A3B4C5D6E /* FrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2C3D4E5F6A7B8C9D0E1F2A /* FrameProcessor.swift */; };
 		1122334455667788AABBCCDD /* StreamSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3D4E5F6A7B8C9D0E1F2A3B /* StreamSettings.swift */; };
 		2233445566778899AABBCCEE /* AdjustSettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4E5F6A7B8C9D0E1F2A3B4C /* AdjustSettingsSheet.swift */; };
+		1A2B3C4D5E6F0A1B2C3D4E5F /* RecordingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D01234 /* RecordingModels.swift */; };
+		2B3C4D5E6F0A1B2C3D4E5F6A /* RecordingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F6A7B8C9D0123456 /* RecordingsListViewModel.swift */; };
+		3C4D5E6F0A1B2C3D4E5F6A7B /* RecordingsListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D4E5F6A7B8C9D012345678 /* RecordingsListSheet.swift */; };
+		4D5E6F0A1B2C3D4E5F6A7B8C /* RewindViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E5F6A7B8C9D01234567890 /* RewindViewModel.swift */; };
+		5E6F0A1B2C3D4E5F6A7B8C9D /* FullScreenCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6A7B8C9D0123456789012 /* FullScreenCameraView.swift */; };
+		6F0A1B2C3D4E5F6A7B8C9D0E /* TimelineScrubber.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7B8C9D012345678901234 /* TimelineScrubber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +116,12 @@
 		BB2C3D4E5F6A7B8C9D0E1F2A /* FrameProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameProcessor.swift; sourceTree = "<group>"; };
 		CC3D4E5F6A7B8C9D0E1F2A3B /* StreamSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamSettings.swift; sourceTree = "<group>"; };
 		DD4E5F6A7B8C9D0E1F2A3B4C /* AdjustSettingsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustSettingsSheet.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F6A7B8C9D01234 /* RecordingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingModels.swift; sourceTree = "<group>"; };
+		B2C3D4E5F6A7B8C9D0123456 /* RecordingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsListViewModel.swift; sourceTree = "<group>"; };
+		C3D4E5F6A7B8C9D012345678 /* RecordingsListSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsListSheet.swift; sourceTree = "<group>"; };
+		D4E5F6A7B8C9D01234567890 /* RewindViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewindViewModel.swift; sourceTree = "<group>"; };
+		E5F6A7B8C9D0123456789012 /* FullScreenCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenCameraView.swift; sourceTree = "<group>"; };
+		F6A7B8C9D012345678901234 /* TimelineScrubber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineScrubber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -193,9 +205,14 @@
 			children = (
 				DD4E5F6A7B8C9D0E1F2A3B4C /* AdjustSettingsSheet.swift */,
 				B76D5DFD9278799ECB2E1BD8 /* CameraTileView.swift */,
+				E5F6A7B8C9D0123456789012 /* FullScreenCameraView.swift */,
+				C3D4E5F6A7B8C9D012345678 /* RecordingsListSheet.swift */,
+				B2C3D4E5F6A7B8C9D0123456 /* RecordingsListViewModel.swift */,
+				D4E5F6A7B8C9D01234567890 /* RewindViewModel.swift */,
 				CC3D4E5F6A7B8C9D0E1F2A3B /* StreamSettings.swift */,
 				8B23FDE86002CE7AE51F0298 /* SwarmViewModel.swift */,
 				6257095DCB86CFC89C872D2D /* SwarmViewScreen.swift */,
+				F6A7B8C9D012345678901234 /* TimelineScrubber.swift */,
 			);
 			path = SwarmView;
 			sourceTree = "<group>";
@@ -269,6 +286,7 @@
 				C663083A9B849BBEB5986ABD /* FirmwareEntry.swift */,
 				FC0CCCB16436DEDD201FD248 /* OTAProgress.swift */,
 				3249BF6AF9AE5609648FE61D /* PreviewData.swift */,
+				A1B2C3D4E5F6A7B8C9D01234 /* RecordingModels.swift */,
 				20BCB53E3C9C43D14694D61F /* ScannedDevice.swift */,
 				21891314564E4E18A8E104D0 /* WiFiStatus.swift */,
 			);
@@ -418,6 +436,12 @@
 				62B664E3ED2C9387CD2EEFB4 /* WiFiConfigViewModel.swift in Sources */,
 				249928C275618142883B18E3 /* WiFiService.swift in Sources */,
 				A7A805F30E7A8CE1B9363AC1 /* WiFiStatus.swift in Sources */,
+				1A2B3C4D5E6F0A1B2C3D4E5F /* RecordingModels.swift in Sources */,
+				2B3C4D5E6F0A1B2C3D4E5F6A /* RecordingsListViewModel.swift in Sources */,
+				3C4D5E6F0A1B2C3D4E5F6A7B /* RecordingsListSheet.swift in Sources */,
+				4D5E6F0A1B2C3D4E5F6A7B8C /* RewindViewModel.swift in Sources */,
+				5E6F0A1B2C3D4E5F6A7B8C9D /* FullScreenCameraView.swift in Sources */,
+				6F0A1B2C3D4E5F6A7B8C9D0E /* TimelineScrubber.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,6 +3,8 @@ import SwiftUI
 struct SwarmViewScreen: View {
     @StateObject private var viewModel = SwarmViewModel()
     @State private var showAdjustSheet = false
+    @State private var selectedDeviceId: String = ""
+    @State private var showFullScreenCamera = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -14,6 +16,12 @@ struct SwarmViewScreen: View {
                             name: device.id,
                             isStreaming: device.streaming
                         )
+                        .onTapGesture {
+                            if device.streaming {
+                                selectedDeviceId = device.id
+                                showFullScreenCamera = true
+                            }
+                        }
                     }
                 }
                 .padding(Theme.spacingMD)
@@ -40,6 +48,12 @@ struct SwarmViewScreen: View {
         .sheet(isPresented: $showAdjustSheet) {
             AdjustSettingsSheet(settings: StreamSettings.shared)
         }
+        .sheet(isPresented: $viewModel.showRecordingsSheet) {
+            RecordingsListSheet(devices: viewModel.streamingDevices)
+        }
+        .navigationDestination(isPresented: $showFullScreenCamera) {
+            FullScreenCameraView(deviceId: selectedDeviceId)
+        }
     }
 
     private var captureFooter: some View {
@@ -47,9 +61,32 @@ struct SwarmViewScreen: View {
             Divider()
                 .background(Color.white.opacity(0.05))
 
+            if viewModel.isCapturing {
+                HStack(spacing: Theme.spacingSM) {
+                    Circle()
+                        .fill(Theme.error)
+                        .frame(width: 8, height: 8)
+                        .shadow(color: Theme.error.opacity(0.6), radius: 4)
+                        .modifier(PulseModifier())
+
+                    Text(formatElapsed(viewModel.captureElapsed))
+                        .font(.system(size: 14, weight: .medium, design: .monospaced))
+                        .foregroundColor(.white)
+
+                    Spacer()
+
+                    Text("\(viewModel.streamingDevices.count) device(s)")
+                        .font(.system(size: 12))
+                        .foregroundColor(Theme.textSecondary)
+                }
+                .padding(.horizontal, Theme.spacingLG)
+                .padding(.vertical, Theme.spacingSM)
+                .background(Theme.error.opacity(0.15))
+            }
+
             HStack(spacing: Theme.spacingLG) {
-                Button {} label: {
-                    Image(systemName: "gobackward.10")
+                Button { viewModel.showRecordingsSheet = true } label: {
+                    Image(systemName: "film.stack")
                         .font(.system(size: 22))
                         .foregroundColor(Color(hex: 0xCBD5E1))
                         .frame(width: 56, height: 48)
@@ -69,10 +106,10 @@ struct SwarmViewScreen: View {
                     }
                     .frame(maxWidth: .infinity)
                     .frame(height: 48)
-                    .background(Theme.primary)
+                    .background(viewModel.isCapturing ? Theme.error : Theme.primary)
                     .foregroundColor(.white)
                     .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMD))
-                    .shadow(color: Theme.primary.opacity(0.2), radius: 8)
+                    .shadow(color: (viewModel.isCapturing ? Theme.error : Theme.primary).opacity(0.2), radius: 8)
                 }
 
                 Button { showAdjustSheet = true } label: {
@@ -88,6 +125,12 @@ struct SwarmViewScreen: View {
             .padding(.bottom, Theme.spacingSM)
             .background(Color(hex: 0x161B22))
         }
+    }
+
+    private func formatElapsed(_ interval: TimeInterval) -> String {
+        let minutes = Int(interval) / 60
+        let seconds = Int(interval) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 }
 
