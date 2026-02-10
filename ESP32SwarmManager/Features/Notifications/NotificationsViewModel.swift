@@ -52,11 +52,14 @@ final class NotificationsViewModel: ObservableObject {
     private func refreshDeviceConnections() async {
         do {
             let devices = try await proxyClient.listDevices()
-            let streamingIds = Set(devices.filter(\.streaming).map(\.id))
+            let streaming = devices.filter(\.streaming)
+            let streamingIds = Set(streaming.map(\.id))
+            print("[Alerts] Found \(devices.count) devices, \(streaming.count) streaming, \(alertClients.count) active clients")
 
             // Remove clients for non-streaming devices or dead connections
             for (deviceId, client) in alertClients {
                 if !streamingIds.contains(deviceId) || !client.isConnected {
+                    print("[Alerts] Removing client for \(deviceId) (streaming: \(streamingIds.contains(deviceId)), connected: \(client.isConnected))")
                     client.disconnect()
                     alertClients.removeValue(forKey: deviceId)
                 }
@@ -67,6 +70,7 @@ final class NotificationsViewModel: ObservableObject {
                 guard alertClients[device.id] == nil else { continue }
                 guard let url = proxyClient.alertStreamURL(deviceId: device.id) else { continue }
 
+                print("[Alerts] Creating SSE client for \(device.id)")
                 let client = SSEAlertClient()
                 let deviceId = device.id
                 client.onAlert = { [weak self] update in
@@ -78,7 +82,7 @@ final class NotificationsViewModel: ObservableObject {
                 client.connect(url: url)
             }
         } catch {
-            // Will retry next cycle
+            print("[Alerts] refreshDeviceConnections error: \(error)")
         }
     }
 
@@ -117,6 +121,7 @@ final class NotificationsViewModel: ObservableObject {
     }
 
     private func handleAlertUpdate(deviceId: String, update: ProxyAlertUpdate) {
+        print("[Alerts] handleAlertUpdate: \(update.alerts.count) alerts for \(deviceId), current notifications: \(notifications.count)")
         let currentCategories = Set(update.alerts.map { "\(deviceId)_\($0.category)" })
 
         // Remove stale alerts for this device

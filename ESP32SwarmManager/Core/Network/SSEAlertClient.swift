@@ -9,10 +9,14 @@ final class SSEAlertClient: @unchecked Sendable {
     func connect(url: URL) {
         disconnect()
         isConnected = true
+        print("[SSE] Connecting to \(url)")
 
         task = Task {
             do {
-                let (bytes, _) = try await URLSession.shared.bytes(from: url)
+                let (bytes, response) = try await URLSession.shared.bytes(from: url)
+                if let http = response as? HTTPURLResponse {
+                    print("[SSE] Connected, status: \(http.statusCode)")
+                }
                 var eventType: String?
                 var dataBuffer = ""
 
@@ -27,17 +31,23 @@ final class SSEAlertClient: @unchecked Sendable {
                         // Empty line = end of event
                         if eventType == "alerts", !dataBuffer.isEmpty,
                            let data = dataBuffer.data(using: .utf8) {
-                            if let update = try? JSONDecoder().decode(ProxyAlertUpdate.self, from: data) {
+                            do {
+                                let update = try JSONDecoder().decode(ProxyAlertUpdate.self, from: data)
+                                print("[SSE] Decoded alert: \(update.alerts.count) alerts for \(update.device_id)")
                                 onAlert?(update)
+                            } catch {
+                                print("[SSE] Decode error: \(error)")
+                                print("[SSE] Raw data: \(dataBuffer)")
                             }
                         }
                         eventType = nil
                         dataBuffer = ""
                     }
                 }
+                print("[SSE] Stream ended")
             } catch {
                 if !Task.isCancelled {
-                    print("SSEAlertClient error: \(error)")
+                    print("[SSE] Connection error: \(error)")
                 }
             }
             isConnected = false
