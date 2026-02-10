@@ -63,6 +63,10 @@ struct ProxyAPIClient {
         URL(string: "\(baseURL)/pose-alerts-stream/\(deviceId)")
     }
 
+    func snapshotURL(relativePath: String) -> URL? {
+        URL(string: "\(baseURL)\(relativePath)")
+    }
+
     // MARK: - Buffer (Rewind) Endpoints
 
     func getBufferMetadata(deviceId: String) async throws -> BufferMetadata {
