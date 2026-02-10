@@ -3,6 +3,7 @@ import SwiftUI
 struct DashboardView: View {
     @Binding var selectedTab: Tab
     @StateObject private var viewModel = DashboardViewModel()
+    @ObservedObject private var notificationsVM = NotificationsViewModel.shared
     @State private var showWiFiConfig = false
     @State private var showFirmware = false
 
@@ -55,13 +56,15 @@ struct DashboardView: View {
                         Image(systemName: "bell")
                             .foregroundColor(Color(hex: 0xCBD5E1))
 
-                        Circle()
-                            .fill(Theme.error)
-                            .frame(width: 10, height: 10)
-                            .overlay(
-                                Circle().stroke(Theme.background, lineWidth: 2)
-                            )
-                            .offset(x: 4, y: -4)
+                        if notificationsVM.unreadCount > 0 {
+                            Circle()
+                                .fill(Theme.error)
+                                .frame(width: 10, height: 10)
+                                .overlay(
+                                    Circle().stroke(Theme.background, lineWidth: 2)
+                                )
+                                .offset(x: 4, y: -4)
+                        }
                     }
                 }
             }

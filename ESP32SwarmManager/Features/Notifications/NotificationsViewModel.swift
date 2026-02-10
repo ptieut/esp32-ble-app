@@ -2,10 +2,17 @@ import Foundation
 
 @MainActor
 final class NotificationsViewModel: ObservableObject {
+    static let shared = NotificationsViewModel()
+
     @Published var notifications: [AppNotification] = []
 
     private var alertClients: [String: SSEAlertClient] = [:]
     private let proxyClient = ProxyAPIClient()
+    private var monitoringTask: Task<Void, Never>?
+
+    private init() {
+        startMonitoring()
+    }
 
     var unreadCount: Int {
         notifications.filter(\.isUnread).count
@@ -33,33 +40,52 @@ final class NotificationsViewModel: ObservableObject {
     }
 
     func startMonitoring() {
-        Task {
-            do {
-                let devices = try await proxyClient.listDevices()
-                for device in devices where device.streaming {
-                    guard alertClients[device.id] == nil else { continue }
-                    guard let url = proxyClient.alertStreamURL(deviceId: device.id) else { continue }
-
-                    let client = SSEAlertClient()
-                    let deviceId = device.id
-                    client.onAlert = { [weak self] update in
-                        Task { @MainActor [weak self] in
-                            self?.handleAlertUpdate(deviceId: deviceId, update: update)
-                        }
-                    }
-                    alertClients[device.id] = client
-                    client.connect(url: url)
-                }
-            } catch {
-                // Silently handle network errors
+        guard monitoringTask == nil else { return }
+        monitoringTask = Task {
+            while !Task.isCancelled {
+                await refreshDeviceConnections()
+                try? await Task.sleep(nanoseconds: 30_000_000_000)
             }
         }
     }
 
-    func stopMonitoring() {
-        for (_, client) in alertClients {
-            client.disconnect()
+    private func refreshDeviceConnections() async {
+        do {
+            let devices = try await proxyClient.listDevices()
+            let streamingIds = Set(devices.filter(\.streaming).map(\.id))
+
+            // Remove clients for non-streaming devices or dead connections
+            for (deviceId, client) in alertClients {
+                if !streamingIds.contains(deviceId) || !client.isConnected {
+                    client.disconnect()
+                    alertClients.removeValue(forKey: deviceId)
+                }
+            }
+
+            // Add clients for new streaming devices
+            for device in devices where device.streaming {
+                guard alertClients[device.id] == nil else { continue }
+                guard let url = proxyClient.alertStreamURL(deviceId: device.id) else { continue }
+
+                let client = SSEAlertClient()
+                let deviceId = device.id
+                client.onAlert = { [weak self] update in
+                    Task { @MainActor [weak self] in
+                        self?.handleAlertUpdate(deviceId: deviceId, update: update)
+                    }
+                }
+                alertClients[device.id] = client
+                client.connect(url: url)
+            }
+        } catch {
+            // Will retry next cycle
         }
+    }
+
+    func stopMonitoring() {
+        monitoringTask?.cancel()
+        monitoringTask = nil
+        for (_, client) in alertClients { client.disconnect() }
         alertClients.removeAll()
     }
 

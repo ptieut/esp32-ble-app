@@ -2,11 +2,13 @@ import Foundation
 
 final class SSEAlertClient: @unchecked Sendable {
     var onAlert: ((ProxyAlertUpdate) -> Void)?
+    private(set) var isConnected = false
 
     private var task: Task<Void, Never>?
 
     func connect(url: URL) {
         disconnect()
+        isConnected = true
 
         task = Task {
             do {
@@ -38,12 +40,14 @@ final class SSEAlertClient: @unchecked Sendable {
                     print("SSEAlertClient error: \(error)")
                 }
             }
+            isConnected = false
         }
     }
 
     func disconnect() {
         task?.cancel()
         task = nil
+        isConnected = false
     }
 }
 

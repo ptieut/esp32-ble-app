@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selectedTab: Tab = .dashboard
-    @State private var unreadNotificationCount = 1
+    @ObservedObject private var notificationsVM = NotificationsViewModel.shared
     @State private var lastDeviceCount = 0
     @ObservedObject private var deviceStore = DeviceStore.shared
 
@@ -31,7 +31,7 @@ struct ContentView: View {
                 Label("Alerts", systemImage: "bell")
             }
             .tag(Tab.alerts)
-            .badge(unreadNotificationCount)
+            .badge(notificationsVM.unreadCount)
 
             NavigationStack {
                 ScannerView()
