@@ -35,7 +35,45 @@ struct NotificationRow: View {
         .saturation(dimmed ? 0 : 1)
     }
 
+    @ViewBuilder
     private var thumbnail: some View {
+        if let imageURL = notification.imageURL {
+            ZStack {
+                AsyncImage(url: imageURL) { phase in
+                    switch phase {
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    case .failure:
+                        fallbackThumbnail
+                    case .empty:
+                        ProgressView()
+                            .frame(width: 64, height: 64)
+                    @unknown default:
+                        fallbackThumbnail
+                    }
+                }
+                .frame(width: 64, height: 64)
+                .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusSM))
+
+                if notification.clipURL != nil {
+                    Circle()
+                        .fill(Color.black.opacity(0.5))
+                        .frame(width: 28, height: 28)
+                        .overlay(
+                            Image(systemName: "play.fill")
+                                .font(.system(size: 12))
+                                .foregroundColor(.white)
+                        )
+                }
+            }
+        } else {
+            fallbackThumbnail
+        }
+    }
+
+    private var fallbackThumbnail: some View {
         RoundedRectangle(cornerRadius: Theme.cornerRadiusSM)
             .fill(Color(hex: 0x1E293B))
             .frame(width: 64, height: 64)

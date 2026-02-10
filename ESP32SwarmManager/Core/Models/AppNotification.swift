@@ -7,6 +7,7 @@ struct AppNotification: Identifiable, Equatable {
     let timestamp: Date
     let type: NotificationType
     let imageURL: URL?
+    let clipURL: URL?
     var isUnread: Bool
 
     var timeAgo: String {

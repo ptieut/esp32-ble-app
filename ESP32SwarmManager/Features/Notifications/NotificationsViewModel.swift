@@ -102,6 +102,7 @@ final class NotificationsViewModel: ObservableObject {
                 timestamp: notification.timestamp,
                 type: notification.type,
                 imageURL: notification.imageURL,
+                clipURL: notification.clipURL,
                 isUnread: false
             )
         }
@@ -116,6 +117,7 @@ final class NotificationsViewModel: ObservableObject {
             timestamp: notifications[index].timestamp,
             type: notifications[index].type,
             imageURL: notifications[index].imageURL,
+            clipURL: notifications[index].clipURL,
             isUnread: false
         )
     }
@@ -132,15 +134,27 @@ final class NotificationsViewModel: ObservableObject {
         // Add or update alerts
         for alert in update.alerts {
             let notifId = "\(deviceId)_\(alert.category)"
+            let imageURL = alert.snapshot_url.flatMap { proxyClient.snapshotURL(relativePath: $0) }
+            let clipURL = alert.clip_url.flatMap { proxyClient.snapshotURL(relativePath: $0) }
+            let timestamp: Date
+            if let ms = alert.timestamp_ms {
+                timestamp = Date(timeIntervalSince1970: TimeInterval(ms) / 1000.0)
+            } else {
+                timestamp = Date()
+            }
+
             if let index = notifications.firstIndex(where: { $0.id == notifId }) {
-                // Update existing
+                // Update existing — preserve imageURL/clipURL if new ones are nil
+                let existingImageURL = notifications[index].imageURL
+                let existingClipURL = notifications[index].clipURL
                 notifications[index] = AppNotification(
                     id: notifId,
                     title: deviceId,
                     message: alert.message,
-                    timestamp: Date(),
+                    timestamp: timestamp,
                     type: .motion,
-                    imageURL: nil,
+                    imageURL: imageURL ?? existingImageURL,
+                    clipURL: clipURL ?? existingClipURL,
                     isUnread: true
                 )
             } else {
@@ -150,9 +164,10 @@ final class NotificationsViewModel: ObservableObject {
                         id: notifId,
                         title: deviceId,
                         message: alert.message,
-                        timestamp: Date(),
+                        timestamp: timestamp,
                         type: .motion,
-                        imageURL: nil,
+                        imageURL: imageURL,
+                        clipURL: clipURL,
                         isUnread: true
                     ),
                     at: 0

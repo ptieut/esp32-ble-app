@@ -1,7 +1,9 @@
 import SwiftUI
+import AVKit
 
 struct NotificationsView: View {
     @ObservedObject private var viewModel = NotificationsViewModel.shared
+    @State private var selectedClipURL: URL?
 
     var body: some View {
         ScrollView {
@@ -18,6 +20,9 @@ struct NotificationsView: View {
                             NotificationRow(notification: notification)
                                 .onTapGesture {
                                     viewModel.markAsRead(notification.id)
+                                    if let clipURL = notification.clipURL {
+                                        selectedClipURL = clipURL
+                                    }
                                 }
                         }
                     }
@@ -36,6 +41,35 @@ struct NotificationsView: View {
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(Theme.primary)
             }
+        }
+        .sheet(isPresented: Binding(
+            get: { selectedClipURL != nil },
+            set: { if !$0 { selectedClipURL = nil } }
+        )) {
+            if let url = selectedClipURL {
+                AlertClipPlayerView(url: url)
+            }
+        }
+    }
+}
+
+private struct AlertClipPlayerView: View {
+    let url: URL
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            VideoPlayer(player: AVPlayer(url: url))
+                .ignoresSafeArea()
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button("Done") {
+                            dismiss()
+                        }
+                        .fontWeight(.semibold)
+                    }
+                }
         }
     }
 }

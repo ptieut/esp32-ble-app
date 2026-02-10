@@ -105,6 +105,7 @@ enum PreviewData {
             timestamp: Date().addingTimeInterval(-120),
             type: .motion,
             imageURL: nil,
+            clipURL: nil,
             isUnread: true
         ),
         AppNotification(
@@ -114,6 +115,7 @@ enum PreviewData {
             timestamp: Date().addingTimeInterval(-3600),
             type: .battery,
             imageURL: nil,
+            clipURL: nil,
             isUnread: false
         ),
         AppNotification(
@@ -123,6 +125,7 @@ enum PreviewData {
             timestamp: Date().addingTimeInterval(-86400 - 3600),
             type: .firmware,
             imageURL: nil,
+            clipURL: nil,
             isUnread: false
         ),
         AppNotification(
@@ -132,6 +135,7 @@ enum PreviewData {
             timestamp: Date().addingTimeInterval(-86400 - 7200),
             type: .connection,
             imageURL: nil,
+            clipURL: nil,
             isUnread: false
         ),
         AppNotification(
@@ -141,6 +145,7 @@ enum PreviewData {
             timestamp: Date().addingTimeInterval(-86400 - 10800),
             type: .motion,
             imageURL: nil,
+            clipURL: nil,
             isUnread: false
         ),
     ]

@@ -110,4 +110,7 @@ struct ProxyAlert: Codable {
     let severity: String
     let message: String
     let category: String
+    let snapshot_url: String?
+    let timestamp_ms: UInt64?
+    let clip_url: String?
 }
